@@ -1,16 +1,21 @@
 import queryString from "query-string";
 
 import { SearchFilterProps, SearchFilterPairProps } from "../types";
-import { searchFilterValue } from "../constants"
+import { searchFilterValue } from "../constants";
 
-const getSingleLimitMap = ([min, max]: SearchFilterPairProps, baseKey: string) => {
+const getSingleLimitMap = (
+  [min, max]: SearchFilterPairProps,
+  baseKey: string
+) => {
   let limitMap: any = {};
   limitMap[`min_${baseKey}`] = min;
   limitMap[`max_${baseKey}`] = max;
   return limitMap;
 };
 
-export const generateQuery = (values: SearchFilterProps = searchFilterValue) => {
+export const generateQuery = (
+  values: SearchFilterProps = searchFilterValue
+) => {
   const dischargesRange = getSingleLimitMap(
     values.dischargesRange,
     "discharges"
