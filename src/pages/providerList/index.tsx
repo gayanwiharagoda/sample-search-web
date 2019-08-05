@@ -12,6 +12,12 @@ import config from "../../config";
 
 import "./style.css";
 
+const initialValue = {
+  dischargesRange: [1, 1000],
+  avarageCoverChargeRange: [1, 1000],
+  averageMedicarePaymentRange: [1, 1000]
+}
+
 /**
  * Enhasmenent
  * Loding view and pagination for data loading
@@ -20,7 +26,8 @@ const ProviderSeachPage = () => {
   const [state, dispatch] = useReducer(dataFetchReducer, {
     isLoading: false,
     isError: false,
-    ippsProvidersList: []
+    ippsProvidersList: [],
+    searchFilter: initialValue
   });
 
   useEffect(() => {
@@ -47,6 +54,9 @@ const ProviderSeachPage = () => {
             payload: searchFilter
           });
         }}
+        initialValue = {
+          state.searchFilter
+        }
       />
       <div className="container result-table-container">
         <PppsProviderList data={state.ippsProvidersList} />

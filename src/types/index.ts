@@ -16,7 +16,7 @@ export type PppsProvidersProps = {
   averageMedicarePayments: string;
 };
 
-export type SearchFilterPairProps = [number, number]
+export type SearchFilterPairProps = number[]
 
 export type SearchFilterProps = {
   dischargesRange: SearchFilterPairProps,
@@ -28,7 +28,7 @@ export type DataFetchReducerProps = {
   isLoading?: boolean,
   isError?: boolean,
   ippsProvidersList?: Array<PppsProvidersProps>,
-  searchFilter?: SearchFilterProps
+  searchFilter: SearchFilterProps
 }
 
 

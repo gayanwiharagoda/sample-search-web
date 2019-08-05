@@ -15,6 +15,7 @@ import { SearchFilterProps } from "../types"
 
 interface UserFormProps extends FormComponentProps {
   onSubmit: (values: SearchFilterProps) => void;
+  initialValue: SearchFilterProps;
 }
 
 type FiledViewProps = {
@@ -60,7 +61,7 @@ const handleSearch = (form: any, onSubmit: (searchDetails: SearchFilterProps) =>
  * Enhasment
  * get the max limit from backend by openning up a services
  */
-const SearcFilter = ({ form, onSubmit }: { form: any; onSubmit: any }) => (
+const SearchFilter = ({ form, onSubmit, initialValue }: { form: any; onSubmit: any, initialValue:  SearchFilterProps}) => (
   <Form onSubmit={handleSearch(form, onSubmit)}>
     <div className="container search-filter">
       <Row type="flex" align="middle" gutter={12}>
@@ -68,21 +69,21 @@ const SearcFilter = ({ form, onSubmit }: { form: any; onSubmit: any }) => (
           form={form}
           filedName={"dischargesRange"}
           fieldLabel={"Discharges"}
-          initialValue={[1, 1000]}
+          initialValue={initialValue.dischargesRange}
           max={10000}
         />
         <FiledView
           form={form}
           filedName={"avarageCoverChargeRange"}
           fieldLabel={"Coverage charges"}
-          initialValue={[1, 1000]}
+          initialValue={initialValue.avarageCoverChargeRange}
           max={10000}
         />
         <FiledView
           form={form}
           filedName={"averageMedicarePaymentRange"}
           fieldLabel={"Avarage medicare payments"}
-          initialValue={[1, 1000]}
+          initialValue={initialValue.averageMedicarePaymentRange}
           max={10000}
         />
         <Col xs={24}>
@@ -95,8 +96,8 @@ const SearcFilter = ({ form, onSubmit }: { form: any; onSubmit: any }) => (
   </Form>
 );
 
-const SearcFilterForm = Form.create<UserFormProps>({ name: "searchFilters" })(
-  SearcFilter
+const SearchFilterForm = Form.create<UserFormProps>({ name: "searchFilters" })(
+  SearchFilter
 );
 
-export default SearcFilterForm;
+export default SearchFilterForm;
